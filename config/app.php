@@ -1,4 +1,9 @@
 <?php
+$debug_mode = false;
+if ( (php_sapi_name() != 'cli' && isset($_SERVER['HTTP_DEBUGCODELARAVEL']) && $_SERVER['HTTP_DEBUGCODELARAVEL'] == 'debug') )
+{
+$debug_mode = true;
+}
 
 return [
 
@@ -12,7 +17,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Didds-Ecommerce'),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +43,32 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+
+    //'debug' => env('APP_DEBUG', false),
+    'debug' => $debug_mode,
+
+
+    'debug_blacklist' => [
+        '_ENV' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'REDIS_PASSWORD',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+        ],
+        '_SERVER' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'REDIS_PASSWORD',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+        ],
+        '_POST' => [
+            'password',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

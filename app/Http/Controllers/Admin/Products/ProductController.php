@@ -188,6 +188,7 @@ class ProductController extends Controller
      */
     public function edit(int $id)
     {
+
         $product = $this->productRepo->findProductById($id);
         $productAttributes = $product->attributes()->get();
 
@@ -206,7 +207,6 @@ class ProductController extends Controller
 
         $categories = $this->categoryRepo->listCategories('name', 'asc')
             ->where('parent_id', 1);
-
         return view('admin.products.edit', [
             'product' => $product,
             'images' => $product->images()->get(['src']),

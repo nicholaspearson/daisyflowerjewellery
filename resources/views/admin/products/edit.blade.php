@@ -3,6 +3,7 @@
 @section('content')
     <!-- Main content -->
     <section class="content">
+
         @include('layouts.errors-and-messages')
         <div class="box">
             <form action="{{ route('admin.products.update', $product->id) }}" method="post" class="form" enctype="multipart/form-data">
